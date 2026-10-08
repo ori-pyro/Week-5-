@@ -1,0 +1,19 @@
+id,date,name,backbone,img_size,stages,best_val,best_epoch,time_min,kaggle_score,notes
+1,,r18_128_head,resnet18,128,head:30@1e-04,0.708,,,,"первый прогон, batch 64, голова без BatchNorm"
+2,,r18_64_l4,resnet18,64,layer4:30@1e-04,0.814,,,,голова без BatchNorm
+3,,r18_64_l34,resnet18,64,layer3+layer4:30@1e-04,0.86,,,,голова без BatchNorm
+4,,r18_64_head,resnet18,64,head:30@1e-04,0.587,,,,"сравнение размеров, голова без BatchNorm"
+5,,r18_128_head_bs128,resnet18,128,head:30@1e-04,0.7,,,,"сравнение размеров, голова без BatchNorm"
+6,,r18_256_head,resnet18,256,head:30@1e-04,0.768,,,,"сравнение размеров, голова без BatchNorm"
+7,,r18_64_3stage_a,resnet18,64,layer3+layer4:5@1e-02 | layer4:5@1e-03 | head:10@1e-04,0.75,,,,3 этапа; lr 1e-2 на 1-м этапе ломает старт; голова без BatchNorm
+8,,r18_64_3stage_b,resnet18,64,layer3+layer4:5@1e-04 | layer4:5@1e-04 | head:10@1e-04,0.801,,,,голова без BatchNorm
+9,,r18_64_3stage_c,resnet18,64,layer3+layer4:5@1e-04 | layer4:5@1e-04 | head:10@1e-05,0.803,,,,голова без BatchNorm
+10,,r18_64_3stage_d,resnet18,64,layer3+layer4:5@1e-04 | layer4:5@1e-03 | head:10@1e-05,0.817,,,,"итоговая строка не сохранилась, максимум по логу; голова без BatchNorm"
+11,,r18_64_3stage_e,resnet18,64,layer3+layer4:5@1e-04 | layer4:5@1e-03 | head:20@1e-04,0.824,,,,голова без BatchNorm
+12,,r18_64_3stage_f,resnet18,64,layer3+layer4:5@1e-04 | layer4:5@1e-03 | head:10@1e-03,0.827,,,,голова без BatchNorm
+13,,r18_256_3stage_a,resnet18,256,layer3+layer4:5@1e-02 | layer4:5@1e-03 | head:10@1e-04,0.851,,,,голова с BatchNorm (дальше везде)
+14,,r18_256_3stage_b,resnet18,256,layer3+layer4:5@1e-04 | layer4:5@1e-03 | head:10@1e-03,0.936,14,,,без сброса генератора между этапами; train acc скачет на 3-м этапе
+15,,r18_256_3stage_b_seed,resnet18,256,layer3+layer4:5@1e-04 | layer4:5@1e-03 | head:10@1e-03,0.934,19,,,то же со сбросом сида и генератора
+16,,r18_256_3stage_c,resnet18,256,layer3+layer4:5@1e-04 | layer4:5@1e-04 | head:10@1e-04,0.934,15,,,
+17,,r18_256_2stage,resnet18,256,layer3+layer4:5@1e-04 | head:10@1e-03,0.924,10,,,без этапа layer4
+18,,r18_224_3stage_c,resnet18,224,layer3+layer4:5@1e-04 | layer4:5@1e-04 | head:10@1e-04,0.937,11,,,лучший; почти весь результат даёт 1-й этап (0.906)
